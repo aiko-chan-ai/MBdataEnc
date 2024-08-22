@@ -123,13 +123,13 @@ const captcha = await client.post(
 fs.writeFileSync("./captcha.png", Buffer.from(captcha.data.imageString, "base64"));
 
 const request = {
-  userId: "0123456789",
-  password: cryptoNode.createHash("md5").update("123456").digest("hex"),
-  captcha: "123456",
-  ibAuthen2faString: "c7a1beebb9400375bb187daa33de9659", // globalThis.sessionStorage?.getItem("FPR")
-  sessionId: null,
-  refNo: "0123456789-2024071018223800",
-  deviceIdCommon: "ms7jhh48-mbib-0000-0000-2024071018571948",
+	userId: '0123456789',
+	password: cryptoNode.createHash('md5').update('123456').digest('hex'),
+	captcha: '123456',
+	ibAuthen2faString: 'c722fa8dd6f5179150f472497e022ba0', // globalThis.sessionStorage?.getItem("FPR")
+	sessionId: null,
+	refNo: '0123456789-2024071018223800',
+	deviceIdCommon: 'ms7jhh48-mbib-0000-0000-2024071018571948',
 };
 
 const capt = await readLineAsync("Nhập captcha: ");
@@ -137,6 +137,8 @@ const capt = await readLineAsync("Nhập captcha: ");
 request.captcha = capt;
 
 const dataEnc = await wasm(fs.readFileSync("./main.wasm"), request, "0");
+
+console.log("> Encrypt", dataEnc);
 
 // Login
 const res = await client

@@ -3,6 +3,13 @@
  * By Elysia <3
  * ;-; Ely đã quá lười để deobfuscate và xem từng function là gì + đặt tên cho nó nên thôi kệ luôn
  */
+import { JSDOM } from "jsdom";
+
+const dom = new JSDOM('', {
+	url: 'https://online.mbbank.com.vn/pl/login',
+});
+
+globalThis.window = dom.window;
 
 globalThis.location = new URL("https://online.mbbank.com.vn/pl/login");
 
